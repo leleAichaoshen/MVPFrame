@@ -1,6 +1,7 @@
 package com.king.mvpframe.mvp.template;
 
-import com.king.frame.mvp.base.BaseView;
+
+import com.king.mvpframe.base.BaseView;
 
 /**
  * View模板

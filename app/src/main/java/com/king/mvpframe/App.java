@@ -1,8 +1,6 @@
 package com.king.mvpframe;
-
 import android.app.Application;
-
-import com.king.frame.api.ApiManager;
+import com.king.mvpframe.api.ApiManager;
 
 import timber.log.Timber;
 

@@ -1,6 +1,5 @@
 package com.king.mvpframe.mvp.template;
-
-import com.king.frame.mvp.base.BasePresenter;
+import com.king.mvpframe.base.BasePresenter;
 
 /**
  * Presenter模板

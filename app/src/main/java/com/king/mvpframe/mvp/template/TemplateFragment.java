@@ -1,7 +1,7 @@
 package com.king.mvpframe.mvp.template;
 
-import com.king.frame.mvp.base.QuickFragment;
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.QuickFragment;
 
 /**
  * Fragment模板

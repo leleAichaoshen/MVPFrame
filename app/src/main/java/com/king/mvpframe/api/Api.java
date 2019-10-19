@@ -1,8 +1,6 @@
 package com.king.mvpframe.api;
 
-import com.king.frame.api.ApiManager;
-import com.king.frame.api.ApiObserver;
-import com.king.frame.api.SimpleCallback;
+
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.bean.Result;
 

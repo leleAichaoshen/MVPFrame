@@ -34,7 +34,7 @@ android {
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
@@ -45,6 +45,14 @@ dependencies {
 
     implementation deps.jenly.base_adapter
     implementation deps.jenly.base_util
-
-    implementation project(':lib')
+    compileOnly deps.support.appcompat
+    api deps.mosby.mvp
+    api deps.mosby.mvi
+    api deps.mosby.viewstate
+    api deps.retrofit.retrofit
+    api deps.retrofit.converter_gson
+    api deps.retrofit.adapter_rxjava
+    api deps.rxjava
+    api deps.rxandroid
+    api deps.timber
 }

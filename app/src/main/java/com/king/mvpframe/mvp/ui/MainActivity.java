@@ -4,15 +4,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.king.base.adapter.divider.DividerItemDecoration;
-import com.king.frame.mvp.base.BindingActivity;
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.BindingActivity;
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.bean.Result;
 import com.king.mvpframe.databinding.MainActivityBinding;
 import com.king.mvpframe.databinding.RvPoetryItemBinding;
-import com.king.mvpframe.mvp.ui.adapter.BindingAdapter;
 import com.king.mvpframe.mvp.iview.PoetryView;
 import com.king.mvpframe.mvp.presenter.PoetryPresenter;
+import com.king.mvpframe.mvp.ui.adapter.BindingAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

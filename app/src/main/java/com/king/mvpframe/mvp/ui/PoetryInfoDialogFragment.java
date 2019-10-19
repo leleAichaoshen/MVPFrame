@@ -2,11 +2,11 @@ package com.king.mvpframe.mvp.ui;
 
 import android.os.Bundle;
 
-import com.king.frame.mvp.base.BasePresenter;
-import com.king.frame.mvp.base.BaseView;
-import com.king.frame.mvp.base.BindingDialogFragment;
 import com.king.mvpframe.Constants;
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseView;
+import com.king.mvpframe.base.BindingDialogFragment;
 import com.king.mvpframe.bean.PoetryInfo;
 import com.king.mvpframe.databinding.PoetryInfoDialogFragmentBinding;
 
