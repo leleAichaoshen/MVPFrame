@@ -3,33 +3,32 @@ package com.king.mvpframe.mvp.presenter;
 import com.king.mvpframe.api.Api;
 import com.king.mvpframe.api.SimpleCallback;
 import com.king.mvpframe.base.BasePresenter;
-import com.king.mvpframe.bean.PoetryInfo;
-import com.king.mvpframe.bean.Result;
-import com.king.mvpframe.mvp.iview.PoetryView;
-
-import java.util.List;
+import com.king.mvpframe.entity.VipUser;
+import com.king.mvpframe.entity.dto.UserDTO;
+import com.king.mvpframe.mvp.iview.PoetryView2;
 
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  * @date 2017/7/5
  */
-public class PoetryPresenter extends BasePresenter<PoetryView> {
+public class PoetryPresenter2 extends BasePresenter<PoetryView2> {
 
 
     /**
      * 获取推荐诗词
      */
-    public void getRecommendPoetry(){
+    public void getRecommendPoetry(UserDTO user){
         ifViewAttached(view -> {
 //            view.showProgress();
-            Api.getInstance().getRecommendPoetry(new SimpleCallback<Result<List<PoetryInfo>>>(view) {
+            Api.getInstance().getRecommendPoetry(user,new SimpleCallback<VipUser>(view) {
                 @Override
-                public void onNext(Result<List<PoetryInfo>> result) {
+                public void onNext(VipUser result) {
                     view.onGetRecommendPoetry(result);
                 }
             });
         });
 
     }
+
 }

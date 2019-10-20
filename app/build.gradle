@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion build_versions.compileSdk
     buildToolsVersion build_versions.buildTools
@@ -9,6 +8,7 @@ android {
         targetSdkVersion build_versions.targetSdk
         versionCode app_version.versionCode
         versionName app_version.versionName
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,7 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     dataBinding {
         enabled true
     }
@@ -42,7 +41,9 @@ dependencies {
     implementation deps.support.appcompat
     implementation deps.support.recyclerview
     implementation deps.support.constraintlayout
-
+    implementation 'org.projectlombok:lombok:1.16.18'  //添加lombok依赖
+    implementation 'org.glassfish:javax.annotation:10.0-b28' //java注解
+    implementation 'com.android.support:multidex:1.0.3'
     implementation deps.jenly.base_adapter
     implementation deps.jenly.base_util
     compileOnly deps.support.appcompat

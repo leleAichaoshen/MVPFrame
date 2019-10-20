@@ -1,4 +1,4 @@
-package com.king.mvpframe.base;/*
+package com.king.mvpframe.base.fragment;/*
  * Copyright 2015 Hannes Dorfmann.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

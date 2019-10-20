@@ -1,4 +1,4 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,20 +19,42 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseProgressDialog;
+import com.king.mvpframe.base.BaseView;
 
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
-public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<V>>  extends BaseActivity<V,P> implements BaseView {
-
+public abstract class QuickFragment<V extends BaseView, P extends BasePresenter<V>> extends BaseFragment<V, P> implements BaseView {
 
     protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
     private Dialog mDialog;
 
     private Dialog mProgressDialog;
+
+    protected void finish(){
+        getActivity().finish();
+    }
+
+    protected Intent getIntent(){
+        return getActivity().getIntent();
+    }
+
+    protected void setIntent(Intent intent){
+        getActivity().setIntent(intent);
+    }
+
+    protected void setResult(int resultCode){
+        getActivity().setResult(resultCode);
+    }
+
+    protected void setResult(int resultCode,Intent intent){
+        getActivity().setResult(resultCode,intent);
+    }
 
     //---------------------------------------
 
@@ -90,10 +112,10 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showDialogFragment(DialogFragment dialogFragment,String tag) {
-        dialogFragment.show(getSupportFragmentManager(),tag);
+        dialogFragment.show(getFragmentManager(),tag);
     }
 
-    protected void showDialogFragment(DialogFragment dialogFragment, FragmentManager fragmentManager, String tag) {
+    protected void showDialogFragment(DialogFragment dialogFragment,FragmentManager fragmentManager, String tag) {
         dialogFragment.show(fragmentManager,tag);
     }
 
@@ -105,16 +127,16 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
         }
     };
 
+    protected View.OnClickListener getDialogCancelClick(){
+        return mOnDialogCancelClick;
+    }
+
     protected Dialog getDialog(){
         return this.mDialog;
     }
 
     protected Dialog getProgressDialog(){
         return this.mProgressDialog;
-    }
-
-    protected View.OnClickListener getDialogCancelClick(){
-        return mOnDialogCancelClick;
     }
 
     protected void dismissDialog(){
@@ -170,7 +192,7 @@ public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<
     }
 
     protected void showDialog(View contentView,boolean isCancel){
-        showDialog(getContext(),contentView, R.style.mvpframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
+        showDialog(getContext(),contentView,R.style.mvpframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
     }
 
     protected void showDialog(View contentView,float widthRatio){

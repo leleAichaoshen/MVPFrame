@@ -1,11 +1,15 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.fragment;
 
+import android.databinding.ViewDataBinding;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseView;
+
 /**
- * 懒加载Fragment
+ * 懒加载BindingFragment
  *
  * 说明：需要使用懒加载的几种方式
  *
@@ -18,7 +22,7 @@ import android.support.v4.view.ViewPager;
  *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class LazyFragment<V extends BaseView, P extends BasePresenter<V>> extends QuickFragment<V,P> {
+public abstract class LazyBindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends BindingFragment<V,P,VDB> {
 
 
     private boolean isVisible;
@@ -30,6 +34,7 @@ public abstract class LazyFragment<V extends BaseView, P extends BasePresenter<V
     @Override
     public void initUI() {
         isFirstLoad = true;
+        super.initUI();
         isPrepared = true;
     }
 
@@ -41,7 +46,6 @@ public abstract class LazyFragment<V extends BaseView, P extends BasePresenter<V
     private void onVisible(){
         isVisible = true;
         lazyLoad();
-
     }
 
 

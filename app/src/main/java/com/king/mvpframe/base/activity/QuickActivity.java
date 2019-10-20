@@ -1,4 +1,4 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.activity;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,44 +9,33 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StyleRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseProgressDialog;
+import com.king.mvpframe.base.BaseView;
 
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
 
-public abstract class QuickDialogFragment<V extends BaseView, P extends BasePresenter<V>> extends BaseDialogFragment<V, P> implements BaseView {
+public abstract class QuickActivity<V extends BaseView, P extends BasePresenter<V>>  extends BaseActivity<V,P> implements BaseView {
+
+
+    protected static final float DEFAULT_WIDTH_RATIO = 0.85f;
 
     private Dialog mDialog;
 
     private Dialog mProgressDialog;
-
-    protected void finish(){
-        getActivity().finish();
-    }
-
-    protected Intent getIntent(){
-        return getActivity().getIntent();
-    }
-
-    protected void setIntent(Intent intent){
-        getActivity().setIntent(intent);
-    }
-
-    protected void setResult(int resultCode){
-        getActivity().setResult(resultCode);
-    }
-
-    protected void setResult(int resultCode,Intent intent){
-        getActivity().setResult(resultCode,intent);
-    }
 
     //---------------------------------------
 
@@ -92,6 +81,10 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
         return LayoutInflater.from(getContext()).inflate(id,root);
     }
 
+    protected View inflate(@LayoutRes int id,@Nullable ViewGroup root, boolean attachToRoot){
+        return LayoutInflater.from(getContext()).inflate(id,root,attachToRoot);
+    }
+
     //---------------------------------------
 
     protected void showDialogFragment(DialogFragment dialogFragment){
@@ -100,7 +93,7 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     protected void showDialogFragment(DialogFragment dialogFragment,String tag) {
-        dialogFragment.show(getFragmentManager(),tag);
+        dialogFragment.show(getSupportFragmentManager(),tag);
     }
 
     protected void showDialogFragment(DialogFragment dialogFragment, FragmentManager fragmentManager, String tag) {
@@ -114,6 +107,14 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
 
         }
     };
+
+    protected Dialog getDialog(){
+        return this.mDialog;
+    }
+
+    protected Dialog getProgressDialog(){
+        return this.mProgressDialog;
+    }
 
     protected View.OnClickListener getDialogCancelClick(){
         return mOnDialogCancelClick;
@@ -140,17 +141,30 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
     }
 
     protected void showProgressDialog(){
-        showProgressDialog(R.layout.mvpframe_progress_dialog);
+        showProgressDialog(false);
+    }
+
+    protected void showProgressDialog(boolean isCancel){
+        showProgressDialog(R.layout.mvpframe_progress_dialog,isCancel);
     }
 
     protected void showProgressDialog(@LayoutRes int resId){
-        showProgressDialog(inflate(resId));
+        showProgressDialog(resId,false);
+    }
+
+    protected void showProgressDialog(@LayoutRes int resId,boolean isCancel){
+        showProgressDialog(inflate(resId),isCancel);
     }
 
     protected void showProgressDialog(View v){
+        showProgressDialog(v,false);
+    }
+
+    protected void showProgressDialog(View v,boolean isCancel){
         dismissProgressDialog();
         mProgressDialog =  BaseProgressDialog.newInstance(getContext());
         mProgressDialog.setContentView(v);
+        mProgressDialog.setCanceledOnTouchOutside(isCancel);
         mProgressDialog.show();
     }
 
@@ -158,8 +172,16 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
         showDialog(contentView,DEFAULT_WIDTH_RATIO);
     }
 
+    protected void showDialog(View contentView,boolean isCancel){
+        showDialog(getContext(),contentView, R.style.mvpframe_dialog,DEFAULT_WIDTH_RATIO,isCancel);
+    }
+
     protected void showDialog(View contentView,float widthRatio){
         showDialog(getContext(),contentView,widthRatio);
+    }
+
+    protected void showDialog(View contentView,float widthRatio,boolean isCancel){
+        showDialog(getContext(),contentView,R.style.mvpframe_dialog,widthRatio,isCancel);
     }
 
     protected void showDialog(Context context,View contentView,float widthRatio){
@@ -190,6 +212,26 @@ public abstract class QuickDialogFragment<V extends BaseView, P extends BasePres
 
     }
 
+    protected void setDialogWindow(Dialog dialog,float widthRatio){
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = (int)(getWidthPixels()*widthRatio);
+        window.setAttributes(lp);
+    }
+
+    //---------------------------------------
+
+    protected DisplayMetrics getDisplayMetrics(){
+        return getResources().getDisplayMetrics();
+    }
+
+    protected int getWidthPixels(){
+        return getDisplayMetrics().widthPixels;
+    }
+
+    protected int getHeightPixels(){
+        return getDisplayMetrics().heightPixels;
+    }
 
     //---------------------------------------
 

@@ -1,7 +1,7 @@
 package com.king.mvpframe.mvp.template;
 
 import com.king.mvpframe.R;
-import com.king.mvpframe.base.LazyFragment;
+import com.king.mvpframe.base.fragment.LazyFragment;
 
 /**
  * LazyFragment模板

@@ -9,7 +9,7 @@ import com.king.mvpframe.entity.VipUser;
  * @date 2017/7/5
  */
 
-public interface PoetryView extends BaseView {
+public interface PoetryView2 extends BaseView {
 
-    void onGetRecommendPoetry(VipUser callback);
+    void onGetRecommendPoetry(VipUser r);
 }

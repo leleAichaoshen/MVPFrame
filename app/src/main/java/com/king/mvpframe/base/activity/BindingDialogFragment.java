@@ -1,4 +1,4 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.activity;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseView;
+import com.king.mvpframe.base.fragment.QuickDialogFragment;
+
 /**
- * DataBinding的Fragment
+ * DataBinding的DialogFragment
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
  */
-public abstract class BindingFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends QuickFragment<V,P> {
+public abstract class BindingDialogFragment<V extends BaseView, P extends BasePresenter<V>,VDB extends ViewDataBinding> extends QuickDialogFragment<V,P> {
 
     protected VDB mBinding;
 

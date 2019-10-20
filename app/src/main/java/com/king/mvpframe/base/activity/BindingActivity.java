@@ -1,7 +1,10 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.activity;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseView;
 
 /**
  * DataBinding的Activity

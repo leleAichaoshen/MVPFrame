@@ -1,4 +1,4 @@
-package com.king.mvpframe.base;
+package com.king.mvpframe.base.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 import com.king.mvpframe.R;
+import com.king.mvpframe.base.BasePresenter;
+import com.king.mvpframe.base.BaseView;
 
 /**
  * MVPFrame的Activity基类

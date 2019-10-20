@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.king.mvpframe.entity.dto.UserDTO" />
+        <variable
+            name="user"
+            type="UserDTO" />
+
+        <import type="com.king.mvpframe.mvp.ui.LoginActivity2.Handler" />
+        <variable
+            name="handler"
+            type="Handler" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="600px"
+                android:background="@drawable/bg_login" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="120px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="28px"
+                    android:text="订单管理系统"
+                    android:textColor="@color/colorPrimaryPressed"
+                    android:textSize="68px" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="用户登录"
+            android:textColor="#00a0e9"
+            android:textSize="60px"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="98px"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/login_input_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/et_login_username"
+                    style="@style/LoginEditTextStyle"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="1dp"
+                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:drawablePadding="10dp"
+                    android:hint="账号"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:nextFocusForward="@+id/et_login_password"
+                    android:text="@{user.loginName}"
+                    android:textSize="48px" />
+
+                <ImageView
+                    android:id="@+id/clear_username"
+                    android:layout_width="65px"
+                    android:layout_height="65px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:scaleType="fitXY" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="#eaeaea" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/et_login_password"
+                    style="@style/LoginEditTextStyle"
+                    android:layout_marginRight="15dp"
+                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:drawablePadding="10dp"
+                    android:hint="密码"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:text="@{user.password}"
+                    android:textSize="48px" />
+
+                <ImageView
+                    android:id="@+id/clear_user_pass"
+                    android:layout_width="65px"
+                    android:layout_height="65px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toRightOf="@id/et_login_password"
+                    android:scaleType="fitXY"
+                    android:visibility="gone" />
+
+                <CheckBox
+                    android:id="@+id/cb_login_pwd_visible"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="15dp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/ckb_remeber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="40px"
+                android:text="记住密码"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:background="@drawable/selector_login_btn_bg"
+            android:stateListAnimator="@null"
+            android:onClick="@{ handler.login() }"
+            android:text="登录"
+            android:textColor="@android:color/white"
+            android:textSize="60px" />
+
+    </LinearLayout>
+</layout>

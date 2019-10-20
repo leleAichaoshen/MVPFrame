@@ -3,7 +3,7 @@ package com.king.mvpframe.mvp.template;
 import android.support.annotation.NonNull;
 
 import com.king.mvpframe.R;
-import com.king.mvpframe.base.QuickActivity;
+import com.king.mvpframe.base.activity.QuickActivity;
 
 /**
  * Activity模板

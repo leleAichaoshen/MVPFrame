@@ -1,10 +1,8 @@
 package com.king.mvpframe.api;
 
 
-import com.king.mvpframe.bean.PoetryInfo;
-import com.king.mvpframe.bean.Result;
-
-import java.util.List;
+import com.king.mvpframe.entity.VipUser;
+import com.king.mvpframe.entity.dto.UserDTO;
 
 /**
  * @author Jenly <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -35,8 +33,8 @@ public class Api {
      * 获取推荐诗词
      * @param callback
      */
-    public void getRecommendPoetry(SimpleCallback<Result<List<PoetryInfo>>> callback){
-        ApiObserver.subscribe(mApiService.getRecommendPoetry(),callback);
+    public void getRecommendPoetry(UserDTO dto, SimpleCallback<VipUser> callback){
+        ApiObserver.subscribe(mApiService.login(dto),callback);
     }
 
 }

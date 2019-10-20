@@ -1,7 +1,7 @@
 package com.king.mvpframe.mvp.template;
 
 import com.king.mvpframe.R;
-import com.king.mvpframe.base.BindingFragment;
+import com.king.mvpframe.base.fragment.BindingFragment;
 import com.king.mvpframe.databinding.TemplateBindingFragmentBinding;
 
 /**
